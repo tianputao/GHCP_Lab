@@ -12,15 +12,15 @@ description: "Scaffold a new Task API feature (types, repository, routes, tests)
 When the user asks to scaffold a new feature `<feature_name>` (e.g., `comments` or `tags`):
 
 1. **Inspect existing references first**:
-   - Read `src/types.ts`, `src/errors.ts`, `src/repositories/task-repository.ts`, `api/validation.ts`, and `api/routes/task-routes.ts`.
+   - Read `src/models.py`, `src/errors.py`, `src/repositories/task_repository.py`, `api/validation.py`, and `api/routes/task_routes.py`.
 2. **Generate 4 aligned artifacts**:
-   - **Types**: Add or create `src/<feature_name>.ts` (or extend `src/types.ts`) with strict entity + Create/Update input interfaces.
-   - **Repository**: Create `src/repositories/<feature_name>-repository.ts` using `InMemoryTable`, parameterized SQL JSDoc remarks, and `NotFoundError`.
-   - **Routes**: Create `api/routes/<feature_name>-routes.ts` with `try/catch`, `sendError`, field validation, and standard HTTP status codes (`201/200/204/400/404`).
-   - **Tests**: Add deterministic tests using Arrange-Act-Assert with hard-coded expected values.
+   - **Models**: Add or create `src/<feature_name>.py` (or extend `src/models.py`) with strict entity + Create/Update dataclasses.
+   - **Repository**: Create `src/repositories/<feature_name>_repository.py` using `InMemoryTable`, parameterized SQL docstring remarks, and `NotFoundError`.
+   - **Routes**: Create `api/routes/<feature_name>_routes.py` with `try/except`, `send_error`, field validation, and standard HTTP status codes (`201/200/204/400/404`).
+   - **Tests**: Add deterministic `pytest` tests using Arrange-Act-Assert with hard-coded expected values.
 3. **Run bundled verification script** from this skill directory:
    ```bash
-   node .github/skills/scaffold-feature/check-conventions.mjs src api
-   npm run typecheck
+   uv run python .github/skills/scaffold-feature/check_conventions.py src api
+   uv run mypy src api tests
    ```
-4. **Report**: Summarize created/updated files and exact verification output. Do not claim compliance without running the checker and `npm run typecheck`.
+4. **Report**: Summarize created/updated files and exact verification output. Do not claim compliance without running the checker and `uv run mypy src api tests`.

@@ -11,7 +11,7 @@ Prevent **Vibe Coding drift** by turning a vague 1-sentence request into crystal
 ## Protocol
 When the user proposes a feature or change:
 1. **Do NOT write implementation code yet.**
-2. Inspect the existing codebase (`base-app/` or `playground/`) to identify existing conventions (error envelope, types, state machines, monetary units).
+2. Inspect the existing codebase (`base_app/` or `playground/`) to identify existing conventions (error envelope, types, state machines, monetary units).
 3. Ask focused, high-leverage questions grouped into 6 risk buckets (max 2 questions per bucket):
    - **Data & Precision**: Monetary units (integer cents vs decimal)? Rounding/caps? Coupon/discount proration?
    - **Lifecycle & State Machine**: Which states allow this action? What states does it transition to?

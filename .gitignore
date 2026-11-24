@@ -1,9 +1,16 @@
-# Dependencies
-node_modules/
-
-# Build outputs
+# Python & uv environments
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 dist/
+build/
+*.egg-info/
 coverage/
+.coverage
 
 # Local environment & logs
 .env
@@ -13,6 +20,6 @@ coverage/
 
 # Demo runtime artifacts created during live labs
 labs/lab02-customization-skills-hooks/.github/
-labs/lab02-customization-skills-hooks/api/test-route.ts
+labs/lab02-customization-skills-hooks/api/test_route.py
 labs/lab02-customization-skills-hooks/.hook-audit.log
 SDD/playground/

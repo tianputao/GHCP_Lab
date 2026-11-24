@@ -8,10 +8,10 @@ applyTo: "api/**"
 > Layers on top of `.github/copilot-instructions.md` ONLY for files matching `api/**`.
 
 ## Handlers
-- Every route handler wraps its body in `try/catch` and funnels failures through `sendError(res, err)` (`api/http.ts`).
+- Every route handler wraps its body in `try/except` and funnels failures through `send_error(res, err)` (`api/http.py`).
 
 ## Validation
-- Validate every input before use following `api/validation.ts` (collect field-level details and throw a single `ValidationError`).
+- Validate every input before use following `api/validation.py` (collect field-level details and raise a single `ValidationError`).
 - Never trust `req.body`, `req.params`, or `req.query` without validation.
 
 ## HTTP Conventions

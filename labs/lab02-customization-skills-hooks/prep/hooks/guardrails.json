@@ -4,7 +4,7 @@
     "preToolUse": [
       {
         "type": "command",
-        "command": "node .github/hooks/guard-tools.mjs",
+        "command": "python3 .github/hooks/guard_tools.py",
         "timeoutSec": 10
       }
     ]

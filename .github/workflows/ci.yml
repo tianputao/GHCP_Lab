@@ -16,13 +16,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js 24
-        uses: actions/setup-node@v4
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v5
         with:
-          node-version: "24"
+          enable-cache: true
 
-      - name: Install all lab dependencies
-        run: npm run install:all
+      - name: Sync Python workspace dependencies
+        run: uv sync --all-packages --locked
 
       - name: Verify all labs and SDD comparison suite
-        run: npm run verify:all
+        run: uv run ghcp-lab verify

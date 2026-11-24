@@ -1,0 +1,22 @@
+[project]
+name = "lab02-customization-skills-hooks"
+version = "2.0.0"
+description = "Lab 02 (2026 Python Edition): Custom Instructions, Path-Scoped Instructions, Agent Skills, Read-Only Custom Agents, Deterministic Hooks & Copilot Spaces"
+requires-python = ">=3.11"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.0",
+    "mypy>=1.13.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+explicit_package_bases = true
+mypy_path = "."

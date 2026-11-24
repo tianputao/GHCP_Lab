@@ -3,7 +3,7 @@ githubCopilot:
   cloudAgent: false
 
 context: |
-  Brownfield Order & Payment Service (TypeScript + Express).
+  Brownfield Order & Payment Service (Python 3.11+ + FastAPI + uv).
   Non-negotiable enterprise constraints:
   - All monetary values MUST be stored and computed in integer cents (never floating-point currency math).
   - All API errors MUST use the standard error envelope: { error: { code, message, details? } }.

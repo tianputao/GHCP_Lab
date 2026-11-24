@@ -2,7 +2,7 @@
 
 ## Context
 
-The brownfield Order API (`base-app/`) uses Express + TypeScript with an in-memory store and a standard `ApiError` envelope (`{ error: { code, message, details? } }`). All existing order amounts already use integer cents (`grossAmountCents`, `couponDiscountCents`, `paidAmountCents`).
+The brownfield Order API (`base_app/`) uses Python 3.11+ + FastAPI with an in-memory store and a standard `AppError` envelope (`{ error: { code, message, details? } }`). All existing order amounts already use integer cents (`grossAmountCents`, `couponDiscountCents`, `paidAmountCents`).
 
 ## Goals / Non-Goals
 
@@ -18,10 +18,10 @@ The brownfield Order API (`base-app/`) uses Express + TypeScript with an in-memo
 
 ## Decisions
 
-1. **Integer-Cents Accounting (`REQ-01`, `REQ-02`)**: Reject any non-integer `amountCents` (`!Number.isInteger(amountCents)`). Never convert to floating-point dollars inside ledger calculations.
-2. **Idempotency Fingerprinting (`REQ-05`, `REQ-06`)**: Store `Map<string, { fingerprint, statusCode, body }>` keyed by `Idempotency-Key`. Compute `fingerprint = JSON.stringify({ orderId, amountCents, reason, actorId })`. Exact match returns stored result with `idempotentReplay: true`; mismatch returns `409 IDEMPOTENCY_CONFLICT`.
+1. **Integer-Cents Accounting (`REQ-01`, `REQ-02`)**: Reject any non-integer `amountCents` (`not isinstance(amount_cents, int) or isinstance(amount_cents, bool)`). Never convert to floating-point dollars inside ledger calculations.
+2. **Idempotency Fingerprinting (`REQ-05`, `REQ-06`)**: Store `dict[str, _IdempotencyEntry]` keyed by `Idempotency-Key`. Compute SHA-256 over canonical JSON `{ orderId, amountCents, reason, actorId }`. Exact match returns stored result with `idempotentReplay: true`; mismatch returns `409 IDEMPOTENCY_CONFLICT`.
 3. **Pending Balance Reservation (`REQ-07`, `REQ-08`)**: High-value refunds (`>= 50000` cents) immediately reserve `pendingRefundAmountCents` so concurrent/subsequent refunds cannot exceed `paidAmountCents` before approval completes.
-4. **Error Envelope Reuse (`REQ-11`)**: Extend existing `AppError` hierarchy (`ValidationError` 400, `ForbiddenError` 403, `NotFoundError` 404, `ConflictError` 409, `UnprocessableError` 422) and serialize via a single `sendError()` helper.
+4. **Error Envelope Reuse (`REQ-11`)**: Reuse `AppError` (`400`, `403`, `404`, `409`, `422`) and serialize via a single `error_response()` helper.
 
 ## API Contract
 

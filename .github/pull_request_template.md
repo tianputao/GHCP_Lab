@@ -8,7 +8,7 @@
 
 ## Verification Evidence
 
-- [ ] `npm run verify:all` (or target lab's `npm run verify`) passed locally
+- [ ] `uv run ghcp-lab verify` (or target lab's `uv run pytest` + `uv run mypy`) passed locally
 - [ ] New/updated tests verify real expected values (no tautological assertions)
 - [ ] Security check completed (input validation, parameterized queries, no `eval`, no hardcoded secrets)
 

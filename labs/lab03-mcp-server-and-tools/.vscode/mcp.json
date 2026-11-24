@@ -2,8 +2,8 @@
   "servers": {
     "enterprise-ops": {
       "type": "stdio",
-      "command": "npx",
-      "args": ["tsx", "src/server.ts"]
+      "command": "uv",
+      "args": ["run", "python", "src/server.py"]
     }
   }
 }

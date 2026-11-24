@@ -1,0 +1,32 @@
+[project]
+name = "ghcp-lab-sdd"
+version = "2.0.0"
+description = "Independent SDD (Specification-Driven Development) vs Vibe Coding Live Comparison Lab (Python + FastAPI + uv + OpenSpec)"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn>=0.32.0",
+    "pyyaml>=6.0.2",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.0",
+    "httpx>=0.27.0",
+    "mypy>=1.13.0",
+    "types-pyyaml>=6.0.12",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = [
+    "base_app/tests",
+    "track_a_vibe_coding/tests",
+    "track_b_sdd/tests",
+]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+explicit_package_bases = true
+mypy_path = "."

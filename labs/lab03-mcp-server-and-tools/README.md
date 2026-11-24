@@ -9,7 +9,7 @@
 
 ```bash
 cd labs/lab03-mcp-server-and-tools
-npm run verify   # 自动拉起 stdio MCP Server 子进程并调用全部 3 个工具做断言测试
+uv run mypy src tests && uv run pytest   # 自动拉起 Python stdio MCP Server 子进程并调用全部 3 个工具做断言测试
 ```
 
 你会看到端到端测试完成：
@@ -22,7 +22,7 @@ npm run verify   # 自动拉起 stdio MCP Server 子进程并调用全部 3 个�
 ## 练习 1：在 VS Code Copilot 中加载并调用本机 MCP Server
 
 1. 用 VS Code 打开 `labs/lab03-mcp-server-and-tools/`。
-2. 打开命令面板运行 **Chat: Open Customizations → MCP Servers**（或打开 `.mcp.json` / `.vscode/mcp.json` 点击上方 **Start**），确认 `enterprise-ops` 状态为 Running。
+2. 打开命令面板运行 **Chat: Open Customizations → MCP Servers**（或打开 `.mcp.json` / `.vscode/mcp.json` 点击上方 **Start**），确认 `enterprise-ops` 状态为 Running（由 `uv run python src/server.py` 启动）。
 3. 在 Copilot Chat（选择 **Copilot** 目标与 **Agent/Interactive** 模式）提问：
    ```text
    帮我查一下目前有哪些低库存的硬件 SKU，然后给库存为 0 的那一款生成一份补货 10 台的采购草稿（申请人写 zhangsan@corp.example），最后评估如果今晚把 payments-api 发布到 production（目前只有 1 个审批人，安全扫描已通过，变更单 CHG-2026）是否合规。
@@ -35,11 +35,11 @@ npm run verify   # 自动拉起 stdio MCP Server 子进程并调用全部 3 个�
 
 ## 练习 2：扩展一个新工具（Agent 实战）
 
-让 Copilot Agent 为 `src/logic.ts` 与 `src/server.ts` 新增第 4 个工具 `estimate_restock_budget`（汇总所有低库存 SKU 补齐到 `reorderThreshold * 2` 所需的总预算分值），并补充一条 `tests/mcp-client.test.ts` 端到端测试，然后运行 `npm run verify`。
+让 Copilot Agent 为 `src/logic.py` 与 `src/server.py` 新增第 4 个工具 `estimate_restock_budget`（汇总所有低库存 SKU 补齐到 `reorderThreshold * 2` 所需的总预算分值），并补充一条 `tests/test_mcp_client.py` 端到端测试，然后运行 `uv run mypy src tests && uv run pytest`。
 
 ---
 
 ## 工程最佳实践备忘
 
-- **永远不要在 stdio MCP Server 中调用 `console.log()`**：`stdout` 专用于 JSON-RPC 帧，诊断日志一律走 `console.error()`（`stderr`）。
+- **永远不要在 stdio MCP Server 中向 `stdout` 打印普通日志（`print(...)`）**：`stdout` 专用于 JSON-RPC 帧，诊断日志一律走 `print(..., file=sys.stderr)`。
 - **两份配置文件的分工**：`.mcp.json` 面向 Copilot Agent Host / Copilot CLI（键名为 `mcpServers`）；`.vscode/mcp.json` 面向 VS Code Local 编辑器扩展（键名为 `servers`）。

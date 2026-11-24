@@ -1,0 +1,24 @@
+[project]
+name = "lab03-mcp-server-and-tools"
+version = "2.0.0"
+description = "Lab 03: Custom Enterprise MCP Server (Python official mcp SDK, replacing deprecated Extensions/Skillsets)"
+requires-python = ">=3.11"
+dependencies = [
+    "mcp>=2.0.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.0",
+    "mypy>=1.13.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+explicit_package_bases = true
+mypy_path = "."

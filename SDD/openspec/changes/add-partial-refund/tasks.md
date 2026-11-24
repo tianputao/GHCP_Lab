@@ -17,4 +17,4 @@
 ## 3. Verification & Traceability
 
 - [x] 3.1 Verify all brownfield endpoints remain intact (`REQ-12`).
-- [x] 3.2 Run `tests/spec-compliance.test.ts` and `evaluator/compare.ts` to confirm 12/12 acceptance criteria pass and contrast against Vibe Coding baseline (`REQ-01`..`REQ-12`).
+- [x] 3.2 Run `track_b_sdd/tests/test_spec_compliance.py` and `evaluator/compare.py` to confirm 12/12 acceptance criteria pass and contrast against Vibe Coding baseline (`REQ-01`..`REQ-12`).

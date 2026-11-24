@@ -6,7 +6,7 @@ description: "Audit Spec-to-Code and Spec-to-Test compliance for an OpenSpec cha
 # SDD Reverse Verification Auditor
 
 ## Checklist
-1. Run `npx openspec validate --all --strict --no-interactive` to verify OpenSpec schema validity.
+1. Run `uv run python scripts/validate_openspec.py` (optionally add `--use-npx` if Node.js is installed) to verify OpenSpec schema validity.
 2. Read every `REQ-XX` in `openspec/changes/<change>/specs/**/spec.md`.
 3. For each `REQ-XX`, verify:
    - Exact code location enforcing the invariant;

@@ -1,0 +1,50 @@
+[project]
+name = "ghcp-lab"
+version = "2.0.0"
+description = "Standalone GitHub Copilot Advanced Labs & Specification-Driven Development (SDD) Demo Repository (Python + uv Edition)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn>=0.32.0",
+    "mcp>=2.0.0",
+    "pyyaml>=6.0.2",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.0",
+    "httpx>=0.27.0",
+    "mypy>=1.13.0",
+    "ruff>=0.8.0",
+    "types-pyyaml>=6.0.12",
+]
+
+[project.scripts]
+ghcp-lab = "scripts.run_all:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["scripts"]
+
+[tool.uv.workspace]
+members = [
+    "labs/lab01-agent-plan-and-autopilot",
+    "labs/lab02-customization-skills-hooks",
+    "labs/lab03-mcp-server-and-tools",
+    "labs/lab04-testing-security-and-review",
+    "labs/lab05-enterprise-governance-and-capstone",
+    "SDD",
+]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+exclude = ["labs/lab02-customization-skills-hooks/prep/insecure_example.py"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "B", "UP"]
+ignore = ["E501"]

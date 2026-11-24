@@ -29,7 +29,7 @@ body:
         - Response shape: `{ data: Task[], nextCursor: string | null, hasMore: boolean }`.
         - Invalid `limit` or unknown/malformed `cursor` returns HTTP `400` with `{ error: { code, message } }`.
         - Existing endpoints (`POST /tasks`, `PATCH /tasks/:id`, `DELETE /tasks/:id`, `GET /health`) remain intact.
-        - Add tests in `labs/lab01-agent-plan-and-autopilot/tests/tasks.test.ts` covering first page, second page, last page, and invalid params.
+        - Add tests in `labs/lab01-agent-plan-and-autopilot/tests/test_tasks.py` covering first page, second page, last page, and invalid params.
     validations:
       required: true
   - type: textarea
@@ -39,7 +39,7 @@ body:
       value: |
         Run from repo root or inside `labs/lab01-agent-plan-and-autopilot`:
         ```bash
-        npm --prefix labs/lab01-agent-plan-and-autopilot run verify
+        uv run --directory labs/lab01-agent-plan-and-autopilot mypy src tests && uv run --directory labs/lab01-agent-plan-and-autopilot pytest
         ```
     validations:
       required: true

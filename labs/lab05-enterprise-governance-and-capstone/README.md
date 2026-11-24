@@ -8,7 +8,9 @@
 
 ```bash
 cd labs/lab05-enterprise-governance-and-capstone
-npm run verify   # 编译 + 冒烟测试 + Token 上下文优化审计 + 治理 API 模板检查
+uv run mypy src tests && uv run pytest
+uv run python scripts/token_budget_audit.py
+bash scripts/check-org-governance.sh --dry-run
 ```
 
 ---
@@ -23,12 +25,12 @@ npm run verify   # 编译 + 冒烟测试 + Token 上下文优化审计 + 治理 
 - 若有 Business / Enterprise 测试组织，在 GitHub 设置中配置排除规则（最长需 30 分钟生效），随后验证排除行为，并结合 **Lab 02 的确定性 Hooks** 做到纵深防御。
 
 ### Step 3 · 审阅仓库级 Custom Instructions
-- 打开 `.github/copilot-instructions.md`，确认其字数控制在 Copilot Code Review 的 **4,000 字符有效窗口**以内（通过 `npm run audit:tokens` 自动校验）。
+- 打开 `.github/copilot-instructions.md`，确认其字数控制在 Copilot Code Review 的 **4,000 字符有效窗口**以内（通过 `uv run python scripts/token_budget_audit.py` 自动校验）。
 
 ### Step 4 · Token-Based Billing（GitHub AI Credits）上下文优化实战
 运行内置分析工具：
 ```bash
-npm run audit:tokens
+uv run python scripts/token_budget_audit.py
 ```
 观察输出并实践四条省 Credits 黄金法则：
 1. 用精准 `#file` 引用代替全仓库无边界扫描（避免每轮重复输入数万无用 Token）；
@@ -37,17 +39,17 @@ npm run audit:tokens
 4. 先用局部单测/类型检查快速收敛，再跑全量构建与评审。
 
 ### Step 5 · Agent Mode 实现 `POST /orders` + 自动化测试
-打开 `src/routes/orders.ts` 中的 `TODO` 块，切换到 Copilot **Plan → Agent Mode**：
+打开 `src/routes/orders.py` 中的 `TODO` 块，切换到 Copilot **Plan → Agent Mode**：
 ```text
-根据 #file:src/routes/orders.ts 中的 TODO 与 #file:.github/copilot-instructions.md 规范，
-先给出计划，再实现 POST /orders，并在 #file:tests/orders.smoke.test.ts 补充正常创建（201）与非法参数（400）测试，最后运行 npm run verify。
+根据 #file:src/routes/orders.py 中的 TODO 与 #file:.github/copilot-instructions.md 规范，
+先给出计划，再实现 POST /orders，并在 #file:tests/test_orders_smoke.py 补充正常创建（201）与非法参数（400）测试，最后运行 uv run mypy src tests && uv run pytest。
 ```
 
 ### Step 6 · 修复同义反复假测试（Tautological Test）
-打开 `tests/discount.test.ts`，识别为何 `applyDiscount(100, '10')` 和自己比较毫无价值，改写为硬编码预期值（如 `90`、边界 `0`、`100` 及非法输入报错）。
+打开 `tests/test_discount.py`，识别为何 `apply_discount(100, "10")` 和自己比较毫无价值，改写为硬编码预期值（如 `90.0`、边界 `0`、`100` 及非法输入报错）。
 
 ### Step 7 · 发现并修复 `eval()` 代码注入漏洞（OWASP A03）
-打开 `src/lib/discount.ts`，让 Copilot 审计并移除 `eval(rule)`，替换为严格数值解析与范围校验，运行 `npm test` 验证。
+打开 `src/lib/discount.py`，让 Copilot 审计并移除 `eval(rule)`，替换为严格数值解析与范围校验，运行 `uv run pytest` 验证。
 
 ### Step 8 · 审计 API 检查与 Responsible AI PR 披露
 - （若有组织管理员权限）运行：

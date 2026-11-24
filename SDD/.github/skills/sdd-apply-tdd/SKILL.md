@@ -11,7 +11,7 @@ description: "Implement an approved OpenSpec change strictly following spec-driv
 3. **Green Phase (Minimal Compliant Implementation)**: Follow `design.md` decisions and existing brownfield conventions (e.g., standard error envelope, integer cents). Do not add unrequested features outside `proposal.md`.
 4. **Verify**: Run:
    ```bash
-   npm run typecheck
-   npm run evaluate:playground   # when working inside SDD/playground
+   uv run mypy playground
+   uv run python -m evaluator.evaluate_playground   # when working inside SDD/playground
    ```
 5. **Report Traceability**: Output a table mapping every `REQ-XX` -> modified file -> passing test -> verification status.

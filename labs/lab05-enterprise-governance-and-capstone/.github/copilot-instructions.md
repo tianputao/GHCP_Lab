@@ -1,21 +1,21 @@
 # Copilot Instructions — Lab 05 Enterprise Capstone
 
 ## Tech Stack
-- Node.js + Express + TypeScript (`"type": "module"`, strict mode ON, no `any`).
+- Python 3.11+ + FastAPI + `uv` (`mypy --strict`, no explicit `Any`).
 
 ## Code Style
-- Prefer `async/await` over raw `.then()` chains.
-- Use named exports and concise JSDoc comments on exported functions.
+- Complete type annotations and concise Google-style docstrings on public functions.
+- Prefer explicit helper modules and clean separation between routes and business logic.
 
 ## API Conventions
 - Validate every input at the route boundary before use.
 - Status codes: `201` created, `200` ok, `204` deleted, `400` validation error, `404` not found.
-- Never build SQL or shell commands via string concatenation.
+- Never build SQL or shell commands via string concatenation or f-strings.
 
 ## Security
-- Never use `eval()`, `Function(...)`, or dynamic code execution on caller input.
+- Never use `eval()`, `exec()`, or `subprocess(..., shell=True)` on caller input.
 - Read secrets from environment variables; never hardcode credentials.
 
 ## Testing
-- Use `node:test` + `node:assert/strict`.
+- Use `pytest` + FastAPI `TestClient`.
 - Assert against explicit human-verified values; never write tautological assertions.

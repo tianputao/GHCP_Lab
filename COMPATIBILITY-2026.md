@@ -15,4 +15,5 @@
 | **Code Review 仅限 GitHub.com** | 过时说法 | 现已同时支持 **VS Code 本地即时 Review**（Source Control Changes 面板）与 **GitHub PR `@copilot` Review**（可按仓库规则开启自动评审） | Lab 04 |
 | **Premium Request Units (PRUs) + 降级回退** | 已于 2026-06-01 切换 | 全面采用 **GitHub AI Credits**（按实际 token 计费，Business/Enterprise 组织池化 + 四级预算控制，无旧版自动回退） | Lab 05 |
 | **GitHub Spark (`github.com`)** | 已于 **2026-08-31 退役** | 本实验仓库已彻底移除 Spark 相关内容，改以 Agent Mode + SDD 工程闭环替代 | 全局 |
-| **依赖原生 C++ 插件（如 `better-sqlite3`）** | 复制到不同 OS / Node 架构易编译失败 | Lab 04 改用 **Node 22.5+/24 内置 `node:sqlite`**，实现 100% 跨平台零原生编译运行真实 SQL 注入演示 | Lab 04 |
+| **依赖原生 C++ 编译扩展（如 `better-sqlite3`）** | 跨 OS / 架构易编译失败 | 本仓库全面采用 **Python 3.11+ + `uv` 统一环境管理**，Lab 04 直接使用 Python 标准库 **`sqlite3`**，实现零 C++ 编译依赖跨平台运行真实 SQL 注入演示 | Lab 04、全局 |
+| **需要额外装 Node.js 才能做 SDD 校验** | 限制纯 Python 学员开箱体验 | SDD 内置严格遵循 OpenSpec 2.1 规范的纯 Python 校验器（`uv run python scripts/validate_openspec.py`），并支持有 Node 环境时可选叠加 `--use-npx` 调用官方 `@fission-ai/openspec` CLI | SDD |

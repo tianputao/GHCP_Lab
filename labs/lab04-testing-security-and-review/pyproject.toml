@@ -1,0 +1,22 @@
+[project]
+name = "lab04-testing-security-and-review"
+version = "2.0.0"
+description = "Lab 04: AI TDD, Tautological Test Detection, Live Python sqlite3 SQLi & eval() Remediation, Code Review & CodeQL Autofix"
+requires-python = ">=3.11"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.0",
+    "mypy>=1.13.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+explicit_package_bases = true
+mypy_path = "."
