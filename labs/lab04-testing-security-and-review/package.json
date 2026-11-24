@@ -1,0 +1,17 @@
+{
+  "name": "lab04-testing-security-and-review",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Lab 04: AI TDD, Tautological Test Detection, Live SQLi & eval() Remediation, Copilot Code Review & CodeQL Autofix",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "verify": "npm run typecheck && npm test"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

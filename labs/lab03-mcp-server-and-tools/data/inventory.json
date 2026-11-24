@@ -1,0 +1,26 @@
+[
+  {
+    "sku": "SKU-GPU-A100",
+    "name": "AI Inference Blade A100",
+    "warehouse": "cn-east-1",
+    "stock": 4,
+    "reorderThreshold": 10,
+    "unitPriceCents": 1250000
+  },
+  {
+    "sku": "SKU-EDGE-NPU",
+    "name": "Edge Gateway NPU Kit",
+    "warehouse": "cn-north-1",
+    "stock": 42,
+    "reorderThreshold": 15,
+    "unitPriceCents": 89000
+  },
+  {
+    "sku": "SKU-SWITCH-400G",
+    "name": "Datacenter Fabric Switch 400G",
+    "warehouse": "sg-central-1",
+    "stock": 0,
+    "reorderThreshold": 5,
+    "unitPriceCents": 680000
+  }
+]

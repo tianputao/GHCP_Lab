@@ -1,0 +1,23 @@
+{
+  "name": "lab01-agent-plan-and-autopilot",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Lab 01: Plan Mode, Agent Mode, Autopilot, Task-Aware Auto, Copilot CLI & Cloud Agent",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "tsx src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test tests/tasks.test.ts",
+    "verify": "npm run typecheck && npm test"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

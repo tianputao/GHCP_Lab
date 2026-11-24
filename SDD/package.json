@@ -1,0 +1,30 @@
+{
+  "name": "ghcp-lab-sdd",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Independent SDD (Specification-Driven Development) vs Vibe Coding Live Comparison Lab with OpenSpec, Agent Skills & Automated Acceptance Scorecard",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test:base": "node --import tsx --test base-app/tests/base.test.ts",
+    "test:vibe-own": "node --import tsx --test track-a-vibe-coding/tests/basic.test.ts",
+    "test:sdd": "node --import tsx --test track-b-sdd/tests/spec-compliance.test.ts",
+    "test": "npm run test:base && npm run test:vibe-own && npm run test:sdd",
+    "compare": "tsx evaluator/compare.ts",
+    "evaluate:playground": "tsx evaluator/evaluate-playground.ts",
+    "reset:playground": "node scripts/reset-playground.mjs",
+    "openspec:status": "node -e \"process.env.OPENSPEC_TELEMETRY='0'\" && npx openspec list",
+    "openspec:validate": "npx openspec validate --all --strict --no-interactive",
+    "verify": "npm run openspec:validate && npm run typecheck && npm test && npm run compare"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@fission-ai/openspec": "^2.1.1",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

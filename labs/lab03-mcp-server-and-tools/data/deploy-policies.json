@@ -1,0 +1,27 @@
+{
+  "freezeWindows": [
+    {
+      "name": "Month-End Financial Freeze",
+      "environments": ["production"],
+      "active": true,
+      "reason": "Production deployments during freeze require VP approval and an emergency change ticket."
+    }
+  ],
+  "environments": {
+    "dev": {
+      "minHumanApprovals": 0,
+      "requireChangeTicket": false,
+      "requireSecurityScan": false
+    },
+    "staging": {
+      "minHumanApprovals": 1,
+      "requireChangeTicket": false,
+      "requireSecurityScan": true
+    },
+    "production": {
+      "minHumanApprovals": 2,
+      "requireChangeTicket": true,
+      "requireSecurityScan": true
+    }
+  }
+}

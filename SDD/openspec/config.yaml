@@ -1,0 +1,19 @@
+schema: spec-driven
+githubCopilot:
+  cloudAgent: false
+
+context: |
+  Brownfield Order & Payment Service (TypeScript + Express).
+  Non-negotiable enterprise constraints:
+  - All monetary values MUST be stored and computed in integer cents (never floating-point currency math).
+  - All API errors MUST use the standard error envelope: { error: { code, message, details? } }.
+  - Financial mutations require idempotency keys, state-machine validation, separation of duties for high-value approvals (>= 50000 cents), and immutable audit logs.
+  - Every requirement REQ-01..REQ-12 MUST map to explicit automated acceptance tests.
+
+rules:
+  proposal:
+    - Always list explicit Non-Goals to prevent scope drift.
+  specs:
+    - Every requirement must be testable with clear WHEN/THEN scenarios and stable REQ-XX identifiers.
+  tasks:
+    - Each task must reference the REQ-XX IDs it satisfies.

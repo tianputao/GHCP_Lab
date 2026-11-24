@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "enterprise-ops": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["tsx", "src/server.ts"]
+    }
+  }
+}

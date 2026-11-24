@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "dist"
+  },
+  "include": [
+    "base-app/**/*.ts",
+    "track-a-vibe-coding/**/*.ts",
+    "track-b-sdd/**/*.ts",
+    "evaluator/**/*.ts"
+  ],
+  "exclude": ["node_modules", "dist", "playground"]
+}

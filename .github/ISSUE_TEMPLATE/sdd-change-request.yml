@@ -1,0 +1,31 @@
+name: SDD Change Request
+description: Spec-first change request linked to OpenSpec artifacts
+title: "[SDD] "
+labels: ["sdd", "spec-first"]
+body:
+  - type: textarea
+    id: why
+    attributes:
+      label: Business Motivation (Why)
+      placeholder: Describe the business problem, user impact, and explicit non-goals.
+    validations:
+      required: true
+  - type: textarea
+    id: spec_ref
+    attributes:
+      label: Approved OpenSpec Reference
+      description: Link to the versioned proposal/spec/design/tasks files.
+      value: |
+        - Proposal: `SDD/openspec/changes/<change-id>/proposal.md`
+        - Spec: `SDD/openspec/changes/<change-id>/specs/<domain>/spec.md`
+        - Design: `SDD/openspec/changes/<change-id>/design.md`
+        - Tasks: `SDD/openspec/changes/<change-id>/tasks.md`
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Verifiable Acceptance Criteria (Given / When / Then)
+      placeholder: List every testable requirement with REQ-XX IDs.
+    validations:
+      required: true

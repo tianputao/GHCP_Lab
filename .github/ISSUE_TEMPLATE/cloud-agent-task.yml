@@ -1,0 +1,45 @@
+name: Cloud Agent Task (Lab 01)
+description: Structured issue template ready to assign to GitHub Copilot Cloud Agent
+title: "[Cloud Agent Lab] Add cursor pagination to GET /tasks"
+labels: ["copilot-lab", "cloud-agent"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to test **GitHub Copilot Cloud Agent** on this repository.
+        Assign the created issue to **Copilot** (requires a paid Copilot plan + org/repo policy enabled).
+  - type: textarea
+    id: scope
+    attributes:
+      label: Target Sub-Project & Problem Statement
+      description: Tell Copilot exactly which sub-project to touch so it does not drift across labs.
+      value: |
+        Target folder: `labs/lab01-agent-plan-and-autopilot/`
+
+        Currently `GET /tasks` returns all seeded tasks at once. Add cursor-based pagination without breaking existing endpoints.
+    validations:
+      required: true
+  - type: textarea
+    id: requirements
+    attributes:
+      label: Requirements & Acceptance Criteria
+      value: |
+        - Query params: `limit` (integer, default 10, min 1, max 50) and optional `cursor` (base64-encoded task ID).
+        - Sort order: `createdAt` descending, tie-broken deterministically by `id`.
+        - Response shape: `{ data: Task[], nextCursor: string | null, hasMore: boolean }`.
+        - Invalid `limit` or unknown/malformed `cursor` returns HTTP `400` with `{ error: { code, message } }`.
+        - Existing endpoints (`POST /tasks`, `PATCH /tasks/:id`, `DELETE /tasks/:id`, `GET /health`) remain intact.
+        - Add tests in `labs/lab01-agent-plan-and-autopilot/tests/tasks.test.ts` covering first page, second page, last page, and invalid params.
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Verification Command
+      value: |
+        Run from repo root or inside `labs/lab01-agent-plan-and-autopilot`:
+        ```bash
+        npm --prefix labs/lab01-agent-plan-and-autopilot run verify
+        ```
+    validations:
+      required: true

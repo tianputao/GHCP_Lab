@@ -1,0 +1,23 @@
+{
+  "name": "lab02-customization-skills-hooks",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Lab 02 (2026 Edition): Custom Instructions, Path-Scoped Instructions, Agent Skills, Read-Only Custom Agents, Deterministic Hooks & Copilot Spaces",
+  "type": "commonjs",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsc",
+    "demo:smoke": "tsc && node dist/api/smoke.js",
+    "test:hooks": "node --test tests/hooks.test.mjs",
+    "test:skill-check": "node prep/skills/scaffold-feature/check-conventions.mjs src api",
+    "test": "npm run demo:smoke && npm run test:hooks && npm run test:skill-check",
+    "verify": "npm run typecheck && npm test",
+    "verify:env": "bash ./scripts/verify-demo-env.sh",
+    "apply:all": "bash ./scripts/apply-all.sh",
+    "reset": "bash ./scripts/reset-demo.sh"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "@types/node": "^22.10.0"
+  }
+}

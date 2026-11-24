@@ -1,0 +1,20 @@
+{
+  "name": "ghcp-lab",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Standalone GitHub Copilot Advanced Labs & Specification-Driven Development (SDD) Demo Repository (2026 Edition)",
+  "type": "module",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "install:all": "node scripts/run-all.mjs install",
+    "test:all": "node scripts/run-all.mjs test",
+    "verify:all": "node scripts/run-all.mjs verify",
+    "reset:all": "node scripts/run-all.mjs reset",
+    "sdd:compare": "npm --prefix SDD run compare",
+    "sdd:reset": "npm --prefix SDD run reset:playground",
+    "lab02:apply": "npm --prefix labs/lab02-customization-skills-hooks run apply:all",
+    "lab02:reset": "npm --prefix labs/lab02-customization-skills-hooks run reset"
+  }
+}

@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+coverage/
+
+# Local environment & logs
+.env
+.env.local
+*.log
+.DS_Store
+
+# Demo runtime artifacts created during live labs
+labs/lab02-customization-skills-hooks/.github/
+labs/lab02-customization-skills-hooks/api/test-route.ts
+labs/lab02-customization-skills-hooks/.hook-audit.log
+SDD/playground/

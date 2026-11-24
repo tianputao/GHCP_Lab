@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "enterprise-ops": {
+      "type": "local",
+      "command": "npx",
+      "args": ["tsx", "src/server.ts"],
+      "tools": ["*"]
+    }
+  }
+}
